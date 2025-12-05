@@ -27,7 +27,7 @@ class NTRIPRos(NTRIPRosBase):
 
     # Read some mandatory config
     host = rospy.get_param('~host', '127.0.0.1')
-    port = rospy.get_param('~port', '2101')
+    port = rospy.get_param('~port', 2101)
     mountpoint = rospy.get_param('~mountpoint', 'mount')
 
     # Optionally get the ntrip version from the launch file
