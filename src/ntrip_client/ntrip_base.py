@@ -82,19 +82,21 @@ class NTRIPBase:
 
       initial = False
       self._reconnect_attempt_count += 1
-
+      self._logdebug(f"Updating _reconnect_attempt_count to {self._reconnect_attempt_count}")
       connect_success = self.connect()
       if connect_success:
         break
 
       if self._reconnect_attempt_count >= self.reconnect_attempt_max:
         self._reconnect_attempt_count = 0
+        self._logdebug(f"Updating _reconnect_attempt_count to {self._reconnect_attempt_count}")
         self._logerr('Reconnect failed. Max attempts reached. Shutting down')
         self.shutdown()
         break
 
   def mark_successful_connection(self):
     self._reconnect_attempt_count = 0
+    self._logdebug(f"Updating _reconnect_attempt_count to {self._reconnect_attempt_count}")
 
   def send_nmea(self):
     raise NotImplementedError("Must override send_nmea")
